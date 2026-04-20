@@ -1,19 +1,157 @@
-<main class="pt-32 pb-20 px-6 max-w-7xl mx-auto min-h-screen">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-        <div>
-            <h2 class="text-5xl font-black mb-6">Mari Berkolaborasi.</h2>
-            <p class="opacity-60 mb-8">Punya ide proyek? Kami siap membantu mewujudkannya.</p>
-            <div class="space-y-4">
-                <div class="flex items-center gap-4 p-4 glass rounded-2xl">
-                    <span class="material-symbols-outlined text-primary">alternate_email</span>
-                    <span class="font-bold">hello@firehorse.id</span>
+<!DOCTYPE html>
+<html lang="id" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hubungi Kami | FireHorse.id</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Manrope', 'sans-serif'] },
+                    colors: { primary: '#4a4bd7', secondary: '#006b60' }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .aurora-bg {
+            background: radial-gradient(circle at 10% 20%, rgba(74, 75, 215, 0.12) 0%, transparent 40%),
+                        radial-gradient(circle at 90% 80%, rgba(0, 107, 96, 0.12) 0%, transparent 40%);
+        }
+        .glass { @apply backdrop-blur-xl bg-white/10 dark:bg-black/30 border border-white/20 dark:border-white/5 shadow-2xl; }
+        .input-glass { @apply bg-white/5 border border-white/10 rounded-2xl p-4 focus:ring-2 focus:ring-primary focus:bg-white/10 transition-all outline-none; }
+    </style>
+</head>
+
+<body class="bg-[#f7f9fb] dark:bg-[#0b0c0d] text-[#2d3337] dark:text-[#f7f9fb] transition-colors duration-500 font-sans min-h-screen flex flex-col">
+    
+    <div class="fixed inset-0 aurora-bg -z-10"></div>
+
+    <nav class="fixed top-0 w-full z-50 glass">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-xl font-black flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">bolt</span> FireHorse.id
+            </a>
+            <div class="hidden md:flex gap-8 items-center font-bold text-sm">
+                <a href="index.html" class="hover:text-primary transition-all">Home</a>
+                <a href="product.html" class="hover:text-primary transition-all">Products</a>
+                <a href="contact.html" class="text-primary">Contact</a>
+                <button onclick="toggleTheme()" class="material-symbols-outlined p-2 hover:bg-white/10 rounded-full transition-colors">contrast</button>
+            </div>
+            <button class="md:hidden material-symbols-outlined">menu</button>
+        </div>
+    </nav>
+
+    <main class="pt-32 pb-20 px-6 max-w-7xl mx-auto w-full flex-grow">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+            
+            <div class="space-y-8">
+                <div>
+                    <span class="px-4 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-bold tracking-widest uppercase mb-6 inline-block">Get in Touch</span>
+                    <h1 class="text-5xl md:text-6xl font-black mb-6 leading-tight">Mari Bicara Tentang <span class="text-primary">Proyek Anda.</span></h1>
+                    <p class="text-lg opacity-70 max-w-md font-medium">Kami siap membantu mewujudkan solusi digital yang cepat, presisi, dan estetik.</p>
+                </div>
+
+                <div class="grid gap-4">
+                    <div class="flex items-center gap-4 p-6 glass rounded-[2rem] hover:border-primary/30 transition-all">
+                        <div class="bg-primary/10 p-3 rounded-xl text-primary"><span class="material-symbols-outlined">alternate_email</span></div>
+                        <div>
+                            <p class="text-xs opacity-50 font-bold uppercase tracking-wider">Email Resmi</p>
+                            <p class="font-bold">hello@firehorse.id</p>
+                        </div>
+                    </div>
+                    <div id="socials" class="flex items-center gap-4 p-6 glass rounded-[2rem] hover:border-secondary/30 transition-all">
+                        <div class="bg-secondary/10 p-3 rounded-xl text-secondary"><span class="material-symbols-outlined">share</span></div>
+                        <div class="flex gap-4">
+                            <a href="#" class="hover:text-primary font-bold">GitHub</a>
+                            <span class="opacity-20">•</span>
+                            <a href="#" class="hover:text-primary font-bold">LinkedIn</a>
+                            <span class="opacity-20">•</span>
+                            <a href="#" class="hover:text-primary font-bold">Twitter</a>
+                        </div>
+                    </div>
                 </div>
             </div>
+
+            <div class="glass p-8 md:p-12 rounded-[3rem] border-primary/10 relative overflow-hidden">
+                <div class="absolute top-0 right-0 p-8 opacity-10">
+                    <span class="material-symbols-outlined text-9xl">send</span>
+                </div>
+                
+                <form id="contact-form" class="relative z-10 space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="flex flex-col gap-2">
+                            <label class="text-xs font-black uppercase ml-2 opacity-50">Nama Lengkap</label>
+                            <input type="text" placeholder="John Doe" class="input-glass">
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <label class="text-xs font-black uppercase ml-2 opacity-50">Alamat Email</label>
+                            <input type="email" placeholder="john@example.com" class="input-glass">
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <label class="text-xs font-black uppercase ml-2 opacity-50">Subjek</label>
+                        <select class="input-glass appearance-none">
+                            <option>Pengembangan Aplikasi</option>
+                            <option>Desain UI/UX</option>
+                            <option>Konsultasi Proyek</option>
+                            <option>Lainnya</option>
+                        </select>
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <label class="text-xs font-black uppercase ml-2 opacity-50">Pesan</label>
+                        <textarea rows="5" placeholder="Ceritakan detail proyek Anda..." class="input-glass resize-none"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="w-full bg-primary text-white py-5 rounded-2xl font-black text-lg hover:scale-[1.02] active:scale-95 transition-all shadow-xl shadow-primary/20 flex justify-center items-center gap-3">
+                        Kirim Pesan <span class="material-symbols-outlined">rocket_launch</span>
+                    </button>
+                </form>
+            </div>
+
         </div>
-        <form class="glass p-8 rounded-[2.5rem] space-y-6">
-            <input type="text" placeholder="Nama Anda" class="w-full bg-white/5 border-none rounded-xl p-4 focus:ring-2 focus:ring-primary">
-            <textarea placeholder="Pesan Anda" rows="4" class="w-full bg-white/5 border-none rounded-xl p-4 focus:ring-2 focus:ring-primary"></textarea>
-            <button class="w-full py-4 bg-primary text-white font-black rounded-xl">Kirim Pesan</button>
-        </form>
-    </div>
-</main>
+    </main>
+
+    <footer class="mt-auto py-12 px-6 border-t border-white/10 glass rounded-t-[3rem]">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="text-center md:text-left">
+                <div class="text-xl font-black mb-2 flex items-center justify-center md:justify-start gap-2 text-primary">
+                    <span class="material-symbols-outlined">bolt</span> FireHorse.id
+                </div>
+                <p class="opacity-50 text-xs font-medium tracking-wide">© 2026 FireHorse.id Digital Solutions. Presisi dalam setiap baris kode.</p>
+            </div>
+            <nav class="flex gap-8 text-xs font-bold uppercase tracking-widest opacity-60">
+                <a href="privacypolicy.html" class="hover:text-primary transition-colors">Privacy Policy</a>
+                <a href="privacypolicy.html#terms" class="hover:text-primary transition-colors">Terms of Service</a>
+            </nav>
+        </div>
+    </footer>
+
+    <script>
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+
+        // Sinkronisasi tema saat load
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+
+        // Animasi sederhana kirim form
+        document.getElementById('contact-form').onsubmit = (e) => {
+            e.preventDefault();
+            alert('Terima kasih! Pesan Anda telah terkirim ke tim FireHorse.id');
+        }
+    </script>
+</body>
+</html>
