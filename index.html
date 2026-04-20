@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FireHorse.id | Digital Portfolio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>FireHorse.id | Modern Digital Portfolio</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1" rel="stylesheet">
     <script>
@@ -14,54 +14,71 @@
         }
     </script>
     <style>
-        .aurora-bg { background: radial-gradient(circle at 10% 20%, rgba(74, 75, 215, 0.15) 0%, transparent 40%), radial-gradient(circle at 90% 80%, rgba(0, 107, 96, 0.15) 0%, transparent 40%); }
-        .glass { @apply backdrop-blur-xl bg-white/10 dark:bg-black/20 border border-white/20 dark:border-white/5 shadow-2xl; }
+        .aurora-bg { background: radial-gradient(circle at 10% 20%, rgba(74, 75, 215, 0.12) 0%, transparent 40%), radial-gradient(circle at 90% 80%, rgba(0, 107, 96, 0.12) 0%, transparent 40%); }
+        .glass { @apply backdrop-blur-xl bg-white/10 dark:bg-black/30 border border-white/20 dark:border-white/5 shadow-2xl; }
     </style>
 </head>
-<body class="bg-[#f7f9fb] dark:bg-[#0b0c0d] text-[#2d3337] dark:text-[#f7f9fb] transition-all duration-500 font-sans">
+<body class="bg-[#f7f9fb] dark:bg-[#0b0c0d] text-[#2d3337] dark:text-[#f7f9fb] transition-colors duration-500 font-sans min-h-screen flex flex-col">
     <div class="fixed inset-0 aurora-bg -z-10"></div>
-    
+
     <nav class="fixed top-0 w-full z-50 glass">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="index.html" class="text-xl font-black flex items-center gap-2"><span class="material-symbols-outlined text-primary">bolt</span> FireHorse.id</a>
-            <div class="hidden md:flex gap-8 items-center font-bold text-sm">
-                <a href="index.html" class="text-primary">Home</a>
-                <a href="product.html" class="hover:text-primary">Products</a>
-                <a href="contact.html" class="hover:text-primary">Contact</a>
-                <button onclick="toggleTheme()" class="material-symbols-outlined p-2 hover:bg-white/10 rounded-full">contrast</button>
+        <div class="max-w-7xl mx-auto px-8 py-5 flex justify-between items-center">
+            <a href="index.html" class="text-xl font-bold flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">bolt</span> FireHorse.id
+            </a>
+            <div class="hidden md:flex gap-10 items-center font-bold text-sm">
+                <a href="index.html" class="text-primary border-b-2 border-primary">Home</a>
+                <a href="product.html" class="opacity-60 hover:opacity-100 transition-all">Products</a>
+                <a href="contact.html" class="opacity-60 hover:opacity-100 transition-all">Contact</a>
+                <button onclick="toggleTheme()" class="material-symbols-outlined p-2 hover:bg-white/10 rounded-full transition-colors">contrast</button>
             </div>
         </div>
     </nav>
 
-    <main class="pt-32 pb-20 px-6 max-w-7xl mx-auto">
+    <main class="pt-32 pb-20 px-8 max-w-7xl mx-auto w-full flex-grow">
         <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
             <div class="md:col-span-3 rounded-[2.5rem] glass p-10 relative overflow-hidden group">
-                <h1 class="text-5xl md:text-7xl font-black mb-6 leading-tight">Kecepatan & <span class="text-primary">Presisi Digital.</span></h1>
-                <p class="text-lg opacity-70 max-w-xl mb-8 font-medium">Solusi pengembangan aplikasi modern dengan performa tinggi.</p>
-                <a href="product.html" class="bg-primary text-white px-8 py-4 rounded-2xl font-bold hover:scale-105 transition-all inline-block">Lihat Katalog</a>
+                <div class="relative z-10">
+                    <span class="px-4 py-1 rounded-full bg-primary/10 text-primary text-[10px] font-black tracking-widest uppercase mb-6 inline-block">Innovating the Web</span>
+                    <h1 class="text-5xl md:text-7xl font-black mb-6 leading-tight">Digital Speed & <span class="text-primary">Precision.</span></h1>
+                    <p class="text-lg opacity-60 max-w-xl mb-10 font-medium">FireHorse.id membangun ekosistem digital dengan performa tinggi dan desain visual yang memukau.</p>
+                    <div class="flex gap-4">
+                        <a href="product.html" class="bg-primary text-white px-8 py-4 rounded-2xl font-bold hover:scale-105 transition-all">Explore Work</a>
+                        <a href="contact.html" class="glass px-8 py-4 rounded-2xl font-bold hover:bg-white/10 transition-all">Get in Touch</a>
+                    </div>
+                </div>
             </div>
-            <a href="contact.html" class="rounded-[2.5rem] glass p-8 flex flex-col justify-between hover:bg-white/20 transition-all">
-                <span class="material-symbols-outlined text-5xl text-secondary">mail</span>
-                <h3 class="text-xl font-bold">Hubungi Kami</h3>
-            </a>
-            <a href="product.html" class="md:col-span-2 rounded-[2.5rem] glass p-8 flex items-center gap-6 hover:border-primary transition-all">
-                <span class="material-symbols-outlined text-4xl text-primary">inventory_2</span>
-                <div><h3 class="text-2xl font-bold">Koleksi Produk</h3><p class="opacity-50">Cek aplikasi terbaru kami</p></div>
-            </a>
-            <div class="md:col-span-2 rounded-[2.5rem] glass p-8 flex items-center gap-6">
-                <span class="material-symbols-outlined text-4xl text-secondary">verified_user</span>
-                <div><h3 class="text-2xl font-bold">Terpercaya</h3><p class="opacity-50">Keamanan data terjamin</p></div>
+
+            <div onclick="toggleTheme()" class="rounded-[2.5rem] glass p-8 flex flex-col justify-between cursor-pointer hover:border-primary transition-all">
+                <div class="p-4 bg-primary/10 rounded-2xl w-fit"><span class="material-symbols-outlined text-primary">dark_mode</span></div>
+                <div><h3 class="text-2xl font-black">Adaptive UI</h3><p class="opacity-50 text-sm">Tap to switch theme</p></div>
             </div>
+
+            <a href="product.html" class="md:col-span-2 rounded-[2.5rem] glass p-8 flex items-center justify-between group hover:border-primary/50 transition-all">
+                <div class="flex items-center gap-6">
+                    <div class="p-5 bg-white/5 rounded-3xl group-hover:rotate-6 transition-transform text-primary"><span class="material-symbols-outlined text-4xl">rocket_launch</span></div>
+                    <div><h3 class="text-2xl font-bold">Katalog Produk</h3><p class="opacity-50">Eksplorasi aplikasi inovatif kami</p></div>
+                </div>
+                <span class="material-symbols-outlined opacity-0 group-hover:opacity-100 transition-all">arrow_forward</span>
+            </a>
+
+            <a href="contact.html#socials" class="md:col-span-2 rounded-[2.5rem] glass p-8 flex items-center justify-between group hover:border-secondary/50 transition-all">
+                <div class="flex items-center gap-6">
+                    <div class="p-5 bg-white/5 rounded-3xl group-hover:scale-110 transition-transform text-secondary"><span class="material-symbols-outlined text-4xl">share</span></div>
+                    <div><h3 class="text-2xl font-bold">Social Media</h3><p class="opacity-50">Terhubung lintas platform</p></div>
+                </div>
+                <span class="material-symbols-outlined opacity-0 group-hover:opacity-100 transition-all">public</span>
+            </a>
         </div>
     </main>
 
-    <footer class="py-10 px-6 glass rounded-t-[3rem] text-center md:text-left">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-            <p class="opacity-50 text-sm">© 2026 FireHorse.id</p>
-            <div class="flex gap-6 text-sm font-bold">
-                <a href="privacypolicy.html">Privacy Policy</a>
-                <a href="privacypolicy.html#terms">Terms</a>
-            </div>
+    <footer class="py-12 px-8 border-t border-white/10 glass rounded-t-[3rem]">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="text-xl font-black flex items-center gap-2"><span class="material-symbols-outlined text-primary">bolt</span> FireHorse.id</div>
+            <nav class="flex gap-8 text-xs font-bold uppercase tracking-widest opacity-60">
+                <a href="privacypolicy.html" class="hover:text-primary">Privacy</a>
+                <a href="privacypolicy.html#terms" class="hover:text-primary">Terms</a>
+            </nav>
         </div>
     </footer>
 
