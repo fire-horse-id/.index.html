@@ -1,0 +1,6 @@
+# AdMob Example
+google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0
+
+# AppLovin Example
+applovin.com, 123456, DIRECT, 7d6c698188044737
+
