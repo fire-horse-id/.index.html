@@ -1,150 +1,67 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
 :root {
-  --primary: #6366f1;
-  --secondary: #8b5cf6;
-  --bg: #ffffff;
-  --text: #111827;
+    --primary: #6366f1;
+    --secondary: #8b5cf6;
+    --bg: #ffffff;
+    --text: #0f172a;
 }
 
 .dark {
-  --bg: #0f172a;
-  --text: #f8fafc;
+    --bg: #020617;
+    --text: #f8fafc;
 }
 
 body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: 'Inter', sans-serif;
-  transition: background 0.5s ease;
-  padding-top: 80px; /* Ruang agar konten tidak tertutup nav */
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', system-ui, sans-serif;
+    transition: all 0.4s ease;
+    padding-top: 80px;
 }
 
-/* NAVIGATION PRO */
+/* Glass Navigation Fixed */
 .nav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 1000;
-  backdrop-filter: blur(15px);
-  background: rgba(255, 255, 255, 0.7);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 9999;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    background: rgba(255, 255, 255, 0.7);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .dark .nav {
-  background: rgba(15, 23, 42, 0.8);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(2, 6, 23, 0.75);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-/* UI ELEMENTS */
+/* Reusable UI */
 .glass {
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.gradient-text {
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
-  transition: transform 0.3s ease, shadow 0.3s ease;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .btn-primary:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+    transform: scale(1.05);
+    box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.4);
+}
+
+.gradient-text {
+    background: linear-gradient(135deg, #818cf8, #c084fc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .animate-up {
-  animation: fadeInUp 0.8s ease forwards;
+    animation: fadeInUp 0.7s ease-out;
 }
 
 @keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-:root {
-  --primary: #6366f1;
-  --secondary: #a855f7;
-  --accent: #22d3ee;
-  --bg: #f8fafc;
-  --card-bg: rgba(255, 255, 255, 0.8);
-  --text: #0f172a;
-  --nav-bg: rgba(255, 255, 255, 0.7);
-}
-
-
-.dark {
-  --bg: #020617;
-  --card-bg: rgba(30, 41, 59, 0.7);
-  --text: #f1f5f9;
-  --nav-bg: rgba(15, 23, 42, 0.8);
-}
-
-body {
-  background-color: var(--bg);
-  color: var(--text);
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  transition: background 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  overflow-x: hidden;
-}
-
-.glass {
-  backdrop-filter: blur(12px);
-  background: var(--card-bg);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-}
-
-.gradient-text {
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.btn-primary {
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.btn-primary:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 20px -5px var(--primary);
-}
-
-.card-hover {
-  transition: all 0.3s ease;
-}
-
-.card-hover:hover {
-  transform: translateY(-8px);
-  border-color: var(--primary);
-}
-
-@keyframes slideUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.animate-up { animation: slideUp 0.8s ease forwards; }
-
-/* Update Glass Nav di app.css */
-.nav {
-  position: fixed; /* Membuat nav tetap di atas saat di-scroll */
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000; /* Memastikan nav di atas konten lain */
-  backdrop-filter: blur(12px);
-  background: rgba(15, 23, 42, 0.7); /* Warna gelap transparan agar kontras */
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 0.75rem 1.5rem;
-}
-
-/* Tambahkan padding pada body agar konten tidak tertutup nav */
-body {
-  padding-top: 70px;
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
 }
