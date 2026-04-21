@@ -7,25 +7,28 @@
 function toggleTheme() {
     const isDark = document.documentElement.classList.toggle("dark");
     localStorage.setItem("fh_theme", isDark ? "dark" : "light");
-    renderUI();
+    renderGlobalUI();
 }
 
+// LOAD API DATA
 async function loadData() {
     try {
         const res = await fetch("api.json");
+        if (!res.ok) throw new Error();
         return await res.json();
     } catch (e) {
-        console.error("Gagal memuat data API");
+        console.error("Gagal memuat api.json");
         return null;
     }
 }
 
+// RENDER NAV & FOOTER
 function renderNav() {
     const isDark = document.documentElement.classList.contains("dark");
     return `
     <div class="nav-fixed">
-        <div class="max-w-7xl mx-auto px-4 w-full flex justify-between items-center">
-            <a href="index.html" class="font-black text-lg tracking-tighter">🔥 FIREHORSE</a>
+        <div class="nav-content">
+            <a href="index.html" class="font-black text-lg tracking-tighter">💎 FIREHORSE</a>
             <div class="flex items-center gap-3 sm:gap-6">
                 <div class="flex gap-3 sm:gap-6 text-[10px] sm:text-xs font-bold uppercase tracking-widest">
                     <a href="index.html">Home</a>
@@ -47,9 +50,9 @@ function renderFooter() {
     </footer>`;
 }
 
-function renderUI() {
-    const nav = document.getElementById("nav");
-    const footer = document.getElementById("footer");
-    if(nav) nav.innerHTML = renderNav();
-    if(footer) footer.innerHTML = renderFooter();
+function renderGlobalUI() {
+    const n = document.getElementById("nav");
+    const f = document.getElementById("footer");
+    if(n) n.innerHTML = renderNav();
+    if(f) f.innerHTML = renderFooter();
 }
