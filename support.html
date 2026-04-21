@@ -3,57 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Support Center | FireHorse.id</title>
+    <title>Support | FireHorse.id</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="assets/css/app.css">
 </head>
-<body class="dark:bg-slate-950">
+<body>
     <div id="nav"></div>
-
-    <main class="max-w-4xl mx-auto px-6 py-20 animate-up">
-        <div class="glass p-10 rounded-[3rem] border-white/10 shadow-2xl">
-            <h1 class="text-4xl font-black mb-10 text-center">Support <span class="gradient-text">Center</span></h1>
-            
-            <div class="grid md:grid-cols-2 gap-8 mb-12">
-                <div class="p-6 bg-white/5 rounded-2xl border border-white/5">
-                    <h3 class="font-bold mb-4 flex items-center gap-2">💬 Chat Bot</h3>
-                    <div id="chatBox" class="h-40 overflow-y-auto mb-4 text-sm opacity-70 space-y-2 border-b border-white/5 pb-2"></div>
-                    <input id="chatInput" class="w-full bg-slate-800 border-none rounded-xl p-3 text-sm text-white focus:ring-2 focus:ring-indigo-500" placeholder="Tanya sesuatu...">
-                </div>
-                
-                <div id="contactInfo" class="p-6 bg-white/5 rounded-2xl border border-white/5 space-y-4">
-                    <h3 class="font-bold">Hubungi Kami</h3>
-                    <p id="emailLink" class="text-sm opacity-70">Memuat kontak...</p>
-                    <div id="socialLinks" class="flex flex-col gap-2 text-indigo-400 font-bold"></div>
-                </div>
-            </div>
+    <main class="max-w-4xl mx-auto px-6 py-20 fade-in">
+        <div class="glass p-10">
+            <h1 class="text-4xl font-black mb-10">Support Center</h1>
+            <div id="social" class="flex flex-col gap-4 text-indigo-500 font-bold"></div>
         </div>
     </main>
-
     <div id="footer"></div>
     <script src="assets/js/app.js"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            document.getElementById("nav").innerHTML = renderNav();
-            document.getElementById("footer").innerHTML = renderFooter();
-
-            loadData().then(data => {
-                document.getElementById("emailLink").innerText = `Email: ${data.support.email}`;
-                document.getElementById("socialLinks").innerHTML = `
-                    <a href="${data.support.whatsapp}">WhatsApp Support</a>
-                    <a href="${data.support.telegram}">Telegram Community</a>
-                `;
-            });
-
-            document.getElementById("chatInput").addEventListener("keypress", e => {
-                if(e.key === "Enter" && e.target.value.trim() !== "") {
-                    const box = document.getElementById("chatBox");
-                    box.innerHTML += `<div class="text-indigo-400">👤 ${e.target.value}</div>`;
-                    box.innerHTML += `<div class="italic text-slate-500">🤖 Sedang memproses jawaban...</div>`;
-                    e.target.value = "";
-                    box.scrollTop = box.scrollHeight;
-                }
-            });
+        document.getElementById("nav").innerHTML = renderNav();
+        document.getElementById("footer").innerHTML = renderFooter();
+        loadData().then(data => {
+            document.getElementById("social").innerHTML = `
+                <a href="mailto:${data.support.email}">📧 Email Support</a>
+                <a href="${data.support.whatsapp}">📱 WhatsApp</a>
+            `;
         });
     </script>
 </body>
