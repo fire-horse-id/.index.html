@@ -5,52 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Audio Hijrah | FireHorse.id</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/app.css">
 </head>
 <body>
-    <div id="nav-root"></div>
-
-    <main class="max-w-5xl mx-auto px-6 pt-32 pb-20">
-        <section class="flex flex-col md:flex-row gap-12 items-center fade-in">
-            <div class="flex-1 space-y-6 text-center md:text-left">
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 text-indigo-500 text-[9px] font-black tracking-widest uppercase">
-                    ✨ New Release v1.0
-                </div>
-                <h1 id="appName" class="text-5xl md:text-7xl font-extrabold tracking-tighter leading-tight">Loading...</h1>
-                <p id="appDesc" class="text-md opacity-60 leading-relaxed max-w-md mx-auto md:mx-0"></p>
-                <div class="pt-4">
-                    <a id="playstoreBtn" href="#" class="btn-main shadow-lg shadow-indigo-500/20">UNDUH SEKARANG</a>
-                </div>
+    <div id="nav"></div>
+    <main class="max-w-7xl mx-auto px-6">
+        <section class="flex flex-col md:flex-row items-center gap-12 py-16 md:py-24 fade-in">
+            <div class="flex-1 text-center md:text-left space-y-6">
+                <h1 class="text-5xl md:text-7xl font-black tracking-tighter" id="appTitle">Loading...</h1>
+                <p id="appDesc" class="text-lg opacity-60 max-w-xl mx-auto md:mx-0">Sedang memuat data...</p>
+                <a id="playLink" href="#" class="btn-premium shadow-xl">UNDUH SEKARANG</a>
             </div>
-            
             <div class="flex-1 flex justify-center">
-                <div class="glass-card shadow-xl border-white/5 relative overflow-hidden group">
-                    <img id="qrCode" class="w-56 h-56 rounded-2xl bg-white p-3">
-                    <div class="mt-4 text-center text-[10px] font-bold opacity-30 uppercase tracking-widest">Scan to Download</div>
+                <div class="glass-card p-8 bg-white/5 shadow-2xl">
+                    <div class="bg-white p-3 rounded-2xl"><img id="qrCode" class="w-40 h-40"></div>
                 </div>
             </div>
         </section>
+        <div id="featureGrid" class="grid grid-cols-1 md:grid-cols-3 gap-6 py-12"></div>
     </main>
-
-    <div id="footer-root"></div>
-    <script src="assets/js/core.js"></script>
+    <div id="footer"></div>
+    <script src="assets/js/app.js"></script>
     <script>
         renderGlobalUI();
-        // Integrasi data API silakan disesuaikan dengan api.json Anda
-        async function loadData() {
-            try {
-                const res = await fetch("api.json");
-                const data = await res.json();
-                document.getElementById("appName").innerText = data.app_info.app_name;
-                document.getElementById("appDesc").innerText = data.app_info.description;
-                document.getElementById("playstoreBtn").href = data.app_info.playstore_url;
-                document.getElementById("qrCode").src = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(data.app_info.playstore_url)}`;
-            } catch (e) {
-                document.getElementById("appName").innerText = "Audio Hijrah";
-                document.getElementById("appDesc").innerText = "Aplikasi pemutar audio dakwah pilihan untuk menemani hijrah Anda.";
+        loadData().then(data => {
+            if(data) {
+                document.getElementById("appTitle").innerText = data.developer.app;
+                document.getElementById("appDesc").innerText = data.description;
+                document.getElementById("playLink").href = data.developer.playstore;
+                document.getElementById("qrCode").src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(data.developer.playstore)}`;
+                document.getElementById("featureGrid").innerHTML = data.features.map(f => `
+                    <div class="glass-card p-8"><h4 class="font-black uppercase tracking-tighter">${f}</h4></div>
+                `).join("");
             }
-        }
-        loadData();
+        });
     </script>
 </body>
 </html>
