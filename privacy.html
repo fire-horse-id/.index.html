@@ -1,21 +1,73 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy | FireHorse.id</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="assets/css/app.css">
+</head>
 <body>
+    <div id="nav"></div>
 
-<div id="nav"></div>
+    <main class="max-w-4xl mx-auto px-6 py-12 animate-up">
+        <div class="glass p-8 md:p-12 rounded-[2rem] relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-indigo-500/10 blur-3xl rounded-full -mr-16 -mt-16"></div>
+            
+            <header class="text-center mb-12">
+                <h1 class="text-4xl font-extrabold mb-4">Privacy <span class="gradient-text">Policy</span></h1>
+                <p class="opacity-60 text-sm">Terakhir diperbarui: April 2026</p>
+            </header>
 
-<section class="p-10 max-w-3xl mx-auto fade-in">
-<h1 class="text-2xl font-bold mb-4">Privacy Policy</h1>
+            <div class="space-y-8 text-sm md:text-base leading-relaxed opacity-90">
+                <section>
+                    <h2 class="text-xl font-bold mb-3 flex items-center gap-2">
+                        <span class="w-1.5 h-6 bg-indigo-500 rounded-full"></span>
+                        Informasi yang Kami Kumpulkan
+                    </h2>
+                    <p>
+                        Kami mengumpulkan informasi minimal untuk memberikan layanan terbaik. Ini termasuk data teknis perangkat untuk optimasi performa dan riwayat pemutaran audio guna memberikan rekomendasi yang relevan melalui sistem AI kami.
+                    </p>
+                </section>
 
-<p>
-Kami menjaga privasi pengguna. Semua data hanya digunakan untuk peningkatan layanan.
-</p>
+                <section>
+                    <h2 class="text-xl font-bold mb-3 flex items-center gap-2">
+                        <span class="w-1.5 h-6 bg-indigo-500 rounded-full"></span>
+                        Penggunaan Data
+                    </h2>
+                    <ul class="list-disc ml-6 space-y-2">
+                        <li>Memastikan fungsionalitas aplikasi <span id="appName"></span> berjalan lancar.</li>
+                        <li>Personalisasi konten audio berdasarkan preferensi pengguna.</li>
+                        <li>Peningkatan keamanan dan deteksi penyalahgunaan layanan.</li>
+                    </ul>
+                </section>
 
-</section>
+                <section>
+                    <h2 class="text-xl font-bold mb-3 flex items-center gap-2">
+                        <span class="w-1.5 h-6 bg-indigo-500 rounded-full"></span>
+                        Keamanan Informasi
+                    </h2>
+                    <p>
+                        Privasi Anda adalah prioritas utama. Kami menggunakan enkripsi standar industri untuk melindungi data Anda dari akses yang tidak sah. Kami tidak akan pernah menjual atau membagikan data pribadi Anda kepada pihak ketiga untuk tujuan pemasaran.
+                    </p>
+                </section>
 
-<div id="footer"></div>
+                <div class="bg-indigo-500/5 p-6 rounded-2xl border border-indigo-500/10">
+                    <p class="italic opacity-80 text-center">
+                        "Dengan menggunakan layanan kami, Anda menyetujui pengumpulan dan penggunaan informasi sesuai dengan kebijakan ini."
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
 
-<script src="assets/js/app.js"></script>
-<script>
-document.getElementById("nav").innerHTML = renderNav();
-document.getElementById("footer").innerHTML = renderFooter();
-</script>
+    <div id="footer"></div>
+
+    <script src="assets/js/app.js"></script>
+    <script>
+        loadData().then(data => {
+            document.getElementById("appName").innerText = data.developer.app;
+        });
+    </script>
 </body>
+</html>
