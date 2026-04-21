@@ -1,32 +1,19 @@
 {
   "developer": {
     "name": "FireHorse.id",
-    "app": "Audio Hijrah",
-    "tagline": "Modern Islamic Audio Experience",
+    "app": "Audio Hijrah Pro",
     "playstore": "https://play.google.com/store/apps/details?id=com.audio.hijrah"
   },
-  "description": "Platform audio islami tercanggih yang dirancang untuk menemani perjalanan spiritual Anda. Menghadirkan kualitas audio High-Definition dengan antarmuka yang intuitif dan elegan.",
+  "description": "Temukan kedamaian melalui kurasi audio islami terbaik. Streaming kajian HD, playlist personal, dan fitur download offline dalam satu genggaman.",
   "features": [
-    {"title": "Streaming HD", "desc": "Kualitas suara jernih tanpa kompresi."},
-    {"title": "Offline Mode", "desc": "Dengarkan kajian favorit tanpa kuota."},
-    {"title": "Smart Playlist", "desc": "Kurasi konten berbasis AI yang personal."},
-    {"title": "Seamless UI", "desc": "Desain modern, ringan, dan responsif."}
-  ],
-  "specs": {
-    "OS": "Android 8.0 (Oreo) atau lebih tinggi",
-    "Penyimpanan": "Minimal 50MB ruang kosong",
-    "RAM": "Optimasi penuh untuk 2GB RAM+"
-  },
-  "tutorial": [
-    "Unduh 'Audio Hijrah' melalui Google Play Store resmi.",
-    "Buka aplikasi dan pilih mode 'Guest' atau 'Daftar' untuk sinkronisasi cloud.",
-    "Gunakan fitur 'Search' untuk mencari ustadz atau topik kajian.",
-    "Klik ikon 'Download' jika ingin mendengarkan secara offline nanti."
+    { "title": "Audio HD", "desc": "Kualitas suara jernih standar studio." },
+    { "title": "Download", "desc": "Simpan dan dengarkan tanpa internet." },
+    { "title": "AI Playlist", "desc": "Rekomendasi kajian sesuai minat Anda." },
+    { "title": "Dark Mode", "desc": "Tampilan nyaman untuk mata di malam hari." }
   ],
   "support": {
-    "email": "support@firehorse.id",
-    "whatsapp": "https://wa.me/628xxxx",
-    "telegram": "https://t.me/firehorse",
-    "youtube": "https://youtube.com/@firehorse"
+    "email": "cs@firehorse.id",
+    "whatsapp": "https://wa.me/628123456789",
+    "telegram": "https://t.me/firehorse_id"
   }
 }
