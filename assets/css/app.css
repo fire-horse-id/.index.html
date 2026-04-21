@@ -2,17 +2,19 @@
   --primary: #6366f1;
   --secondary: #8b5cf6;
   --bg: #ffffff;
-  --text: #0f172a; /* Gelap pekat untuk Light Mode */
-  --nav-bg: rgba(255, 255, 255, 0.8);
+  --text: #0f172a; /* Hitam pekat agar terbaca di Light Mode */
+  --nav-bg: rgba(255, 255, 255, 0.9);
   --card-bg: rgba(99, 102, 241, 0.05);
 }
 
 .dark {
   --bg: #020617;
-  --text: #f8fafc; /* Terang untuk Dark Mode */
-  --nav-bg: rgba(2, 6, 23, 0.8);
+  --text: #f8fafc;
+  --nav-bg: rgba(2, 6, 23, 0.9);
   --card-bg: rgba(255, 255, 255, 0.03);
 }
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
   background-color: var(--bg);
@@ -20,9 +22,9 @@ body {
   font-family: 'Inter', sans-serif;
   transition: background 0.4s, color 0.4s;
   padding-top: 70px;
-  margin: 0;
 }
 
+/* NAVIGATION FIXED & RESPONSIVE */
 .nav-fixed {
   position: fixed;
   top: 0; left: 0; right: 0;
@@ -32,6 +34,16 @@ body {
   border-bottom: 1px solid rgba(99, 102, 241, 0.1);
   height: 65px;
   display: flex;
+  align-items: center;
+}
+
+.nav-content {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -48,7 +60,18 @@ body {
   font-weight: bold;
   padding: 12px 24px;
   border-radius: 1rem;
+  display: inline-block;
+  text-decoration: none;
   transition: transform 0.2s;
 }
 
 .btn-premium:hover { transform: scale(1.05); }
+
+.fade-in {
+  animation: fadeIn 0.6s ease forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
