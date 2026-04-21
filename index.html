@@ -1,77 +1,90 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FireHorse.id</title>
-
-<script src="https://cdn.tailwindcss.com"></script>
-<link rel="stylesheet" href="assets/css/app.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Hijrah | FireHorse.id</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="assets/css/app.css">
 </head>
-
 <body>
+    <div id="nav"></div>
 
-<div id="nav"></div>
+    <main class="max-w-7xl mx-auto px-6">
+        <section class="flex flex-col md:flex-row items-center gap-12 py-16 animate-up">
+            <div class="flex-1 space-y-6 text-center md:text-left">
+                <span class="px-4 py-2 rounded-full bg-indigo-500/10 text-indigo-500 font-bold text-sm">V1.0 GLOBAL RELEASE</span>
+                <h1 class="text-5xl md:text-7xl font-extrabold leading-tight" id="appTitle"></h1>
+                <p class="text-lg opacity-80 leading-relaxed" id="appDesc"></p>
+                <div class="flex flex-wrap gap-4 justify-center md:justify-start">
+                    <a id="playLink" href="#" class="btn-primary px-8 py-4 rounded-2xl text-white font-bold flex items-center gap-2">
+                        <span>Get it on Playstore</span>
+                    </a>
+                </div>
+            </div>
+            <div class="flex-1 flex justify-center">
+                <div class="relative group">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-3xl blur opacity-25 group-hover:opacity-50 transition"></div>
+                    <div class="relative glass p-6 rounded-3xl text-center">
+                        <img id="qrCode" class="w-48 h-48 rounded-xl" alt="QR Playstore">
+                        <p class="mt-4 text-xs font-bold opacity-50">SCAN TO INSTALL</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-<!-- HERO -->
-<section class="text-center p-16 fade-in">
-  <h1 class="text-4xl font-bold mb-4">Audio Hijrah</h1>
-  <p id="desc" class="max-w-xl mx-auto opacity-80"></p>
+        <section class="py-20">
+            <h2 class="text-3xl font-bold mb-12 text-center">Premium Features</h2>
+            <div id="featureGrid" class="grid md:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+        </section>
 
-  <div class="mt-6">
-    <a id="playstore" class="btn">Download Playstore</a>
-  </div>
+        <section class="grid md:grid-cols-2 gap-8 py-20">
+            <div class="glass p-8 rounded-3xl">
+                <h3 class="text-2xl font-bold mb-6 gradient-text">Technical Specs</h3>
+                <div id="specsList" class="space-y-4"></div>
+            </div>
+            <div class="glass p-8 rounded-3xl">
+                <h3 class="text-2xl font-bold mb-6 gradient-text">How to Use</h3>
+                <div id="tutorialSteps" class="space-y-4"></div>
+            </div>
+        </section>
+    </main>
 
-  <div class="mt-6">
-    <img id="qr" class="mx-auto w-40"/>
-  </div>
-</section>
+    <div id="footer"></div>
 
-<!-- FEATURES -->
-<section id="features" class="grid md:grid-cols-3 gap-6 p-8"></section>
+    <script src="assets/js/app.js"></script>
+    <script>
+        loadData().then(data => {
+            document.getElementById("appTitle").innerText = data.developer.app;
+            document.getElementById("appDesc").innerText = data.description;
+            document.getElementById("playLink").href = data.developer.playstore;
+            document.getElementById("qrCode").src = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${data.developer.playstore}`;
+            
+            // Features
+            document.getElementById("featureGrid").innerHTML = data.features.map(f => `
+                <div class="glass p-8 rounded-3xl card-hover">
+                    <div class="w-12 h-12 bg-indigo-500/20 rounded-xl flex items-center justify-center mb-4 text-2xl">✨</div>
+                    <h4 class="font-bold text-xl mb-2">${f.title}</h4>
+                    <p class="text-sm opacity-70">${f.desc}</p>
+                </div>
+            `).join("");
 
-<!-- SPECS -->
-<section class="p-8">
-  <h2 class="text-xl font-bold mb-4">Spesifikasi</h2>
-  <ul id="specs"></ul>
-</section>
+            // Specs
+            document.getElementById("specsList").innerHTML = Object.entries(data.specs).map(([key, val]) => `
+                <div class="flex justify-between border-b border-white/5 pb-2">
+                    <span class="opacity-60">${key}</span>
+                    <span class="font-semibold">${val}</span>
+                </div>
+            `).join("");
 
-<!-- TUTORIAL -->
-<section class="p-8">
-  <h2 class="text-xl font-bold mb-4">Tutorial</h2>
-  <ul id="tutorial"></ul>
-</section>
-
-<div id="footer"></div>
-
-<script src="assets/js/app.js"></script>
-
-<script>
-// LOAD DATA
-loadData().then(data=>{
-  document.getElementById("nav").innerHTML = renderNav();
-  document.getElementById("footer").innerHTML = renderFooter();
-
-  document.getElementById("desc").innerText = data.description;
-
-  document.getElementById("playstore").href = data.developer.playstore;
-
-  document.getElementById("qr").src =
-  `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${data.developer.playstore}`;
-
-  // FEATURES
-  document.getElementById("features").innerHTML =
-    data.features.map(f=>`<div class="card">${f}</div>`).join("");
-
-  // SPECS
-  document.getElementById("specs").innerHTML =
-    Object.values(data.specs).map(s=>`<li>• ${s}</li>`).join("");
-
-  // TUTORIAL
-  document.getElementById("tutorial").innerHTML =
-    data.tutorial.map(t=>`<li>• ${t}</li>`).join("");
-});
-</script>
-
+            // Tutorial
+            document.getElementById("tutorialSteps").innerHTML = data.tutorial.map((step, i) => `
+                <div class="flex gap-4">
+                    <span class="flex-shrink-0 w-8 h-8 rounded-full bg-indigo-500 text-white flex items-center justify-center font-bold">${i+1}</span>
+                    <p class="opacity-80">${step}</p>
+                </div>
+            `).join("");
+        });
+    </script>
 </body>
 </html>
