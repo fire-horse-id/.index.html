@@ -7,44 +7,59 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="assets/css/app.css">
 </head>
-<body>
+<body class="dark:bg-slate-950">
     <div id="nav"></div>
+
     <main class="max-w-7xl mx-auto px-6">
-        <section class="flex flex-col md:flex-row items-center gap-12 py-16 fade-in">
-            <div class="flex-1 text-center md:text-left space-y-6">
-                <h1 class="text-5xl md:text-7xl font-black leading-tight" id="appTitle">Audio Hijrah</h1>
-                <p class="text-lg opacity-70" id="appDesc">Memuat deskripsi...</p>
+        <section class="flex flex-col md:flex-row items-center gap-16 py-16 md:py-24 fade-up">
+            <div class="flex-1 text-center md:text-left space-y-8">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-indigo-500/10 text-indigo-500 text-[10px] font-black uppercase tracking-widest">
+                    <span>✨</span> New Experience
+                </div>
+                <h1 class="text-6xl md:text-8xl font-black leading-[0.9] tracking-tighter" id="appTitle">...</h1>
+                <p class="text-lg md:text-xl opacity-60 leading-relaxed max-w-xl mx-auto md:mx-0" id="appDesc">...</p>
                 <div class="pt-4">
-                    <a id="playLink" href="#" class="btn-primary">
-                        <span>Unduh Sekarang</span>
+                    <a id="playLink" href="#" class="btn-premium px-10 py-5 rounded-[2rem] inline-flex items-center gap-4">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M17.523 15.3414L20 12L17.523 8.65851L12 12L17.523 15.3414Z"></path><path d="M16 12L4 12"></path></svg>
+                        <span>GET THE APP</span>
                     </a>
                 </div>
             </div>
+
             <div class="flex-1 flex justify-center">
-                <div class="glass p-8 shadow-2xl">
-                    <img id="qrCode" class="w-44 h-44 rounded-xl bg-white p-2">
+                <div class="glass-card p-10 shadow-2xl relative group">
+                    <div class="absolute -inset-4 bg-indigo-500/20 blur-3xl rounded-full opacity-0 group-hover:opacity-100 transition duration-1000"></div>
+                    <div class="relative bg-white p-4 rounded-[1.5rem] shadow-inner">
+                        <img id="qrCode" class="w-44 h-44">
+                    </div>
                 </div>
             </div>
         </section>
+
         <section class="py-20">
-            <h2 class="text-center text-3xl font-black mb-12">Fitur Unggulan</h2>
-            <div id="featureGrid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+            <div id="featureGrid" class="grid md:grid-cols-2 lg:grid-cols-4 gap-6"></div>
         </section>
     </main>
+
     <div id="footer"></div>
+
     <script src="assets/js/app.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             document.getElementById("nav").innerHTML = renderNav();
             document.getElementById("footer").innerHTML = renderFooter();
+
             loadData().then(data => {
                 document.getElementById("appTitle").innerText = data.developer.app;
                 document.getElementById("appDesc").innerText = data.description;
                 document.getElementById("playLink").href = data.developer.playstore;
                 document.getElementById("qrCode").src = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(data.developer.playstore)}`;
+                
                 document.getElementById("featureGrid").innerHTML = data.features.map(f => `
-                    <div class="glass p-8 hover:bg-indigo-500/5 transition-all">
-                        <h4 class="font-bold text-xl mb-2">${f}</h4>
+                    <div class="glass-card p-8 hover:bg-indigo-500/5 transition-all group">
+                        <div class="w-12 h-12 bg-indigo-500 text-white rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-indigo-500/20 group-hover:scale-110 transition">💎</div>
+                        <h4 class="font-black text-xl mb-3 uppercase tracking-tighter">${f}</h4>
+                        <p class="text-sm opacity-50 font-medium">Fitur premium yang dirancang khusus untuk kenyamanan Anda.</p>
                     </div>
                 `).join("");
             });
