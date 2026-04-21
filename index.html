@@ -7,49 +7,31 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="assets/css/app.css">
 </head>
-<body class="bg-slate-50 dark:bg-slate-950 transition-colors duration-500">
-
+<body class="dark:bg-slate-950">
     <div id="nav"></div>
 
     <main class="max-w-7xl mx-auto px-6">
         <section class="flex flex-col md:flex-row items-center gap-12 py-16 animate-up">
-            <div class="flex-1 space-y-6 text-center md:text-left">
-                <div class="inline-block px-4 py-2 rounded-full bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 font-bold text-xs tracking-widest uppercase">
-                    New Release V1.0
-                </div>
-                <h1 class="text-5xl md:text-7xl font-extrabold leading-tight tracking-tight dark:text-white" id="appTitle">
-                    Audio Hijrah
-                </h1>
-                <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl" id="appDesc">
-                    Memuat deskripsi aplikasi...
-                </p>
-                
-                <div class="flex flex-wrap gap-4 justify-center md:justify-start pt-4">
-                    <a id="playLink" href="#" class="btn-primary px-8 py-4 rounded-2xl text-white font-bold flex items-center gap-3 shadow-xl shadow-indigo-500/20 transition-all hover:scale-105">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" class="h-6" alt="Playstore">
+            <div class="flex-1 text-center md:text-left space-y-6">
+                <div class="inline-block px-4 py-1 rounded-full bg-indigo-500/10 text-indigo-400 text-xs font-bold uppercase tracking-widest">Version 1.0</div>
+                <h1 class="text-6xl font-black leading-none dark:text-white" id="appTitle">...</h1>
+                <p class="text-lg opacity-70" id="appDesc">Memuat...</p>
+                <div class="pt-4">
+                    <a id="playLink" href="#" class="btn-primary inline-flex items-center gap-3 px-8 py-4 rounded-2xl text-white font-bold">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" class="h-6">
                         <span>Unduh Sekarang</span>
                     </a>
                 </div>
             </div>
-
-            <div class="flex-1 flex justify-center items-center">
-                <div class="relative group">
-                    <div class="absolute -inset-4 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-[3rem] blur-2xl opacity-20 group-hover:opacity-40 transition duration-1000"></div>
-                    <div class="relative glass p-8 rounded-[2.5rem] border border-white/20 shadow-2xl">
-                        <div class="bg-white p-4 rounded-2xl shadow-inner">
-                            <img id="qrCode" class="w-44 h-44" alt="QR Link">
-                        </div>
-                        <p class="mt-6 text-center text-xs font-bold tracking-widest opacity-50 dark:text-white uppercase">Scan to Download</p>
-                    </div>
+            <div class="flex-1 flex justify-center">
+                <div class="glass p-6 rounded-[2.5rem] shadow-2xl border-white/5">
+                    <img id="qrCode" class="w-48 h-48 rounded-xl bg-white p-2">
                 </div>
             </div>
         </section>
 
         <section class="py-20">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold dark:text-white">Kenapa Memilih Kami?</h2>
-                <div class="w-20 h-1 bg-indigo-500 mx-auto mt-4 rounded-full"></div>
-            </div>
+            <h2 class="text-center text-3xl font-bold mb-12">Fitur Unggulan</h2>
             <div id="featureGrid" class="grid md:grid-cols-2 lg:grid-cols-4 gap-6"></div>
         </section>
     </main>
@@ -59,36 +41,23 @@
     <script src="assets/js/app.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            // 1. Inisialisasi Navigasi dan Footer segera
-            const navContainer = document.getElementById("nav");
-            const footerContainer = document.getElementById("footer");
-            
-            if (navContainer) navContainer.innerHTML = renderNav();
-            if (footerContainer) footerContainer.innerHTML = renderFooter();
+            document.getElementById("nav").innerHTML = renderNav();
+            document.getElementById("footer").innerHTML = renderFooter();
 
-            // 2. Load data dari API
             loadData().then(data => {
-                // Update Identitas
                 document.getElementById("appTitle").innerText = data.developer.app;
                 document.getElementById("appDesc").innerText = data.description;
                 document.getElementById("playLink").href = data.developer.playstore;
+                document.getElementById("qrCode").src = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(data.developer.playstore)}`;
                 
-                // Update QR Code dinamis
-                const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(data.developer.playstore)}`;
-                document.getElementById("qrCode").src = qrUrl;
-                
-                // Update Grid Fitur
-                const grid = document.getElementById("featureGrid");
-                grid.innerHTML = data.features.map(f => `
-                    <div class="glass p-8 rounded-[2rem] card-hover border border-white/10 group">
-                        <div class="w-14 h-14 bg-indigo-500/10 text-indigo-500 rounded-2xl flex items-center justify-center mb-6 text-2xl group-hover:bg-indigo-500 group-hover:text-white transition-all duration-300">✨</div>
-                        <h4 class="font-bold text-xl mb-3 dark:text-white">${f.title || f}</h4>
-                        <p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
-                            ${f.desc || 'Nikmati fitur premium untuk pengalaman hijrah yang lebih maksimal dan tenang.'}
-                        </p>
+                document.getElementById("featureGrid").innerHTML = data.features.map(f => `
+                    <div class="glass p-8 rounded-[2rem] border-white/5 hover:bg-white/5 transition">
+                        <div class="text-2xl mb-4">✨</div>
+                        <h4 class="font-bold text-xl mb-2">${f.title}</h4>
+                        <p class="text-sm opacity-60">${f.desc}</p>
                     </div>
                 `).join("");
-            }).catch(err => console.error("Gagal memuat data API:", err));
+            });
         });
     </script>
 </body>
