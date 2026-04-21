@@ -1,43 +1,57 @@
-// 🔐 THEME ENGINE (Persisted)
-(function(){
-  const t = localStorage.getItem("fh_theme");
-  if(t === "dark") document.documentElement.classList.add("dark");
+// Theme Engine
+(function initTheme() {
+  const saved = localStorage.getItem("fh_theme") || "light";
+  if (saved === "dark") document.documentElement.classList.add("dark");
 })();
 
-function toggleTheme(){
-  const root = document.documentElement;
-  root.classList.toggle("dark");
-
-  localStorage.setItem("fh_theme",
-    root.classList.contains("dark") ? "dark":"light"
-  );
+function toggleTheme() {
+  const isDark = document.documentElement.classList.toggle("dark");
+  localStorage.setItem("fh_theme", isDark ? "dark" : "light");
 }
 
-// 🧠 LOAD API DATA
-async function loadData(){
-  const res = await fetch("data/api.json");
-  return await res.json();
+// Data Fetcher
+async function loadData() {
+  try {
+    const res = await fetch("data/api.json");
+    return await res.json();
+  } catch (e) { console.error("Data fail", e); }
 }
 
-// 🔥 NAV COMPONENT (Reusable)
-function renderNav(){
-  return `
-  <nav class="nav flex justify-between p-4 items-center">
-    <h1 class="font-bold text-lg">🔥 FireHorse.id</h1>
-    <div class="flex gap-6 items-center">
-      <a href="index.html">Home</a>
-      <a href="privacy.html">Privacy</a>
-      <a href="terms.html">Terms</a>
-      <a href="support.html">Support</a>
-      <button onclick="toggleTheme()">🌙</button>
-    </div>
-  </nav>`;
+// Shared Components
+function renderNav() {
+  const nav = document.getElementById("nav");
+  if(!nav) return;
+  nav.innerHTML = `
+    <nav class="fixed top-0 w-full z-50 glass border-b border-white/10">
+      <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+        <div class="flex items-center gap-2">
+          <span class="text-2xl">🔥</span>
+          <h1 class="font-extrabold text-xl tracking-tighter">FireHorse<span class="text-indigo-500">.id</span></h1>
+        </div>
+        <div class="hidden md:flex gap-8 font-medium">
+          <a href="index.html" class="hover:text-indigo-500 transition">Home</a>
+          <a href="support.html" class="hover:text-indigo-500 transition">Support</a>
+          <a href="privacy.html" class="hover:text-indigo-500 transition">Privacy</a>
+          <a href="terms.html" class="hover:text-indigo-500 transition">Terms</a>
+        </div>
+        <button onclick="toggleTheme()" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-800 transition">
+          🌓
+        </button>
+      </div>
+    </nav><div class="h-20"></div>`;
 }
 
-// 🔥 FOOTER
-function renderFooter(){
-  return `
-  <footer class="text-center p-6 opacity-70">
-    © 2026 FireHorse.id — All Rights Reserved
-  </footer>`;
+function renderFooter() {
+  const footer = document.getElementById("footer");
+  if(!footer) return;
+  footer.innerHTML = `
+    <footer class="mt-20 border-t border-white/10 py-10 text-center opacity-60">
+      <p class="text-sm font-medium">© 2026 FireHorse.id — Crafting Digital Spirituality</p>
+    </footer>`;
 }
+
+// Initialize on Load
+document.addEventListener("DOMContentLoaded", () => {
+  renderNav();
+  renderFooter();
+});
